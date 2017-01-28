@@ -2,11 +2,15 @@ import {Text,
         StyleSheet,
         View,
         ListView} from 'react-native';
-import React,{Component} from 'react';
+import React,{Component, PropTypes} from 'react';
+import TaskRow from './TaskRow'
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 40,
+    backgroundColor: '#F7F7F7',
+    flex: 1,
+    justifyContent: 'flex-start',
   }
 });
 class TaskList extends Component {
@@ -22,7 +26,7 @@ class TaskList extends Component {
   }
   renderRow(todo) {
     return (
-        <Text>{todo.task}</Text>
+        <TaskRow todo={todo} />
     )
   }
   render() {
@@ -38,6 +42,6 @@ class TaskList extends Component {
 }
 
 TaskList.propTypes = {
-  todos: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  todos: PropTypes.arrayOf(React.PropTypes.object).isRequired,
 }
 export default TaskList;

@@ -21,9 +21,13 @@ class PluralTodo extends React.Component {
       ],
     };
   }
+  onAddStarted() {
+    console.log('On add started')
+  }
   render() {
     return (
       <TaskList
+        onAddStarted={this.onAddStarted.bind(this)}
         todos={this.state.todos}/>
     );
   }

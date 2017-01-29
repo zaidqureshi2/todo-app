@@ -7,6 +7,7 @@ import {
   Navigator,
 } from 'react-native';
 import TaskList from './TaskList'
+import TaskForm from './TaskForm'
 
 class PluralTodo extends React.Component {
   constructor(props, context) {
@@ -30,7 +31,7 @@ class PluralTodo extends React.Component {
   renderScene(route, nav){
     switch(route.name) {
       case 'taskform':
-        return (<Text>Add form comes here!</Text>);
+        return (<TaskForm />);
       default:
         return (
           <TaskList
@@ -44,7 +45,7 @@ class PluralTodo extends React.Component {
   }
   render() {
     return (
-      <Navigator initialRoute={{name: 'taskList', index: 0}}
+      <Navigator initialRoute={{name: 'taskform', index: 0}}
                   ref={(nav) => {
                     this.nav = nav;
                   }}

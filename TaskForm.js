@@ -51,16 +51,23 @@ class TaskForm extends Component {
       task: '',
     }
   }
+
+  onChange(text) {
+    this.task = text;
+  }
+  onAddPressed() {
+    this.props.onAdd(this.task);
+  }
   render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.input}/>
-        <TouchableHighlight style={styles.button}>
+        <TextInput style={styles.input} onChangeText={this.onChange.bind(this)}/>
+        <TouchableHighlight style={styles.button} onPress={this.onAddPressed.bind(this)}>
           <Text style={styles.buttonText}>
             Add
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight style={[styles.button, styles.cancelButton]}>
+        <TouchableHighlight style={[styles.button, styles.cancelButton]} onPress={this.props.onCancel}>
           <Text style={styles.buttonText}>
             Cancel
           </Text>
@@ -68,6 +75,11 @@ class TaskForm extends Component {
       </View>
     )
   }
+}
+
+TaskForm.propTypes = {
+  onCancel: PropTypes.func.isRequired,
+  onAdd: PropTypes.func.isRequired,
 }
 
 export default TaskForm;

@@ -31,7 +31,7 @@ class PluralTodo extends React.Component {
   renderScene(route, nav){
     switch(route.name) {
       case 'taskform':
-        return (<TaskForm />);
+        return (<TaskForm onCancel={this.onCancel.bind(this)} onAdd={this.onAdd.bind(this)}/>);
       default:
         return (
           <TaskList
@@ -43,9 +43,17 @@ class PluralTodo extends React.Component {
   configureScene() {
     return Navigator.SceneConfigs.FloatFromBottom;
   }
+  onAdd(task) {
+    this.state.todos.push({ task });
+    this.setState({ todos: this.state.todos })
+    this.nav.pop();
+  }
+  onCancel() {
+    this.nav.pop();
+  }
   render() {
     return (
-      <Navigator initialRoute={{name: 'taskform', index: 0}}
+      <Navigator initialRoute={{name: 'tasklist', index: 0}}
                   ref={(nav) => {
                     this.nav = nav;
                   }}

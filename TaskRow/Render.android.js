@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative from 'react-native';
+import Swipeout from 'react-native-swipeout';
 
 const {
   Text,
@@ -9,12 +10,23 @@ const {
 } = ReactNative;
 
 export default function render (styles) {
+  const buttons = [
+    {
+      text: 'Done',
+      backgroundColor: '#05A5D1',
+      underlayColor: '#273539',
+      onPress: this.onDonePressed.bind(this),
+    }
+  ]
     return (
-      <View style={styles.container}>
-        <Text style={styles.label}>{this.props.todo.task}..</Text>
-        <TouchableHighlight style={styles.doneButton} onPress={() => this.props.onDone(this.props.todo)}>
-          <Text>Done</Text>
-        </TouchableHighlight>
+      <View style={{marginBottom: 20}}>
+      <Swipeout backgroundColor='#fff'
+            right={buttons}>
+        <View style={styles.container}>
+          <Text style={styles.label}>{this.props.todo.task}..</Text>
+        </View>
+      </Swipeout>
       </View>
+
     )
   }

@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
   },
   label: {
     fontSize: 20,
@@ -30,9 +30,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: '#EAEAEA',
     padding: 5,
-  }
+  },
 })
 class TaskRow extends Component {
+  onDonePressed() {
+    this.props.onDone(this.props.todo);
+  }
   render(){
     return Render.bind(this)(styles);
   }

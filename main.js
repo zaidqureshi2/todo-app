@@ -28,6 +28,14 @@ class PluralTodo extends React.Component {
       name: 'taskform'
     });
   }
+
+  onDone(todo){
+    const filteredTodos =
+      this.state.todos.filter( (filterTodo) => {
+        return filterTodo !== todo;
+      });
+      this.setState({ todos: filteredTodos });
+  }
   renderScene(route, nav){
     switch(route.name) {
       case 'taskform':
@@ -36,6 +44,7 @@ class PluralTodo extends React.Component {
         return (
           <TaskList
         onAddStarted={this.onAddStarted.bind(this)}
+        onDone={this.onDone.bind(this)}
         todos={this.state.todos}/>
         )
     }

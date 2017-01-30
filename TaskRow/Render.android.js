@@ -7,7 +7,16 @@ const {
   View,
   StyleSheet,
   TouchableHighlight,
+  Image,
 } = ReactNative;
+
+const localStyles = StyleSheet.create({
+  image: {
+    width: 20,
+    height: 20,
+  }
+
+  });
 
 export default function render (styles) {
   const buttons = [
@@ -24,6 +33,7 @@ export default function render (styles) {
             right={buttons}>
         <View style={styles.container}>
           <Text style={styles.label}>{this.props.todo.task}..</Text>
+          <Image source={require('../images/test.jpg')} style={localStyles.image}/>
         </View>
       </Swipeout>
       </View>

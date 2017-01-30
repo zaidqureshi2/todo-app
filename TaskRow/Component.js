@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ReactNative from 'react-native';
+import Render from './Render';
 
 const {
   Text,
@@ -32,15 +33,8 @@ const styles = StyleSheet.create({
   }
 })
 class TaskRow extends Component {
-  render () {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.label}>{this.props.todo.task}..</Text>
-        <TouchableHighlight style={styles.doneButton} onPress={() => this.props.onDone(this.props.todo)}>
-          <Text>Done</Text>
-        </TouchableHighlight>
-      </View>
-    )
+  render(){
+    return Render.bind(this)(styles);
   }
 }
 

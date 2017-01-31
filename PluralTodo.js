@@ -38,12 +38,20 @@ class PluralTodo extends React.Component {
           <TaskList
         onAddStarted={this.onAddStarted.bind(this)}
         onDone={this.onDone.bind(this)}
-        todos={this.state.todos}/>
+        todos={this.state.todos}
+        filter={this.state.filter}
+        onToggle={this.onToggle.bind(this)}/>
+
         )
     }
   }
   configureScene() {
     return Navigator.SceneConfigs.FloatFromBottom;
+  }
+  onToggle() {
+    store.dispatch({
+      type: 'TOGGLE_STATE'
+    });
   }
   onAdd(task) {
     // this.state.todos.push({ task });

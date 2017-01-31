@@ -8,27 +8,49 @@ const {
   StyleSheet,
   TouchableHighlight,
   Image,
+  Animated,
 } = ReactNative;
 
-const localStyles = StyleSheet.create({
+
+
+export default function render (styles) {
+
+  const doneAnimation = new Animated.ValueXY();
+  const localStyles = StyleSheet.create({
   image: {
     width: 20,
     height: 20,
-  }
+  },
+  row: {
+    transform: doneAnimation.getTranslateTransform(),
+  },
 
   });
+  function animatedPress() {
+    Animated.spring(doneAnimation, {
+      tension: 2,
+      friction: 3,
+      toValue: {
+        x: -500,
+        y: 0,
+      }
+    }).start();
+    setTimeout(()=> {
+      this.onDonePressed();
+    }, 1000)
 
-export default function render (styles) {
+  }
   const buttons = [
     {
       text: 'Done',
       backgroundColor: '#05A5D1',
       underlayColor: '#273539',
-      onPress: this.onDonePressed.bind(this),
+      onPress: animatedPress.bind(this),
     }
-  ]
+  ];
+
     return (
-      <View style={{marginBottom: 20}}>
+      <Animated.View style={{marginBottom: 20}, localStyles.row}>
       <Swipeout backgroundColor='#fff'
             right={buttons}>
         <View style={styles.container}>
@@ -36,7 +58,7 @@ export default function render (styles) {
           <Image source={require('../images/test.jpg')} style={localStyles.image}/>
         </View>
       </Swipeout>
-      </View>
+      </Animated.View>
 
     )
   }
